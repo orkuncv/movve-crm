@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "b5e8d8b3-4b8f-4e8a-9b8a-9b8a9b8a9b8a",
+		"name": "Movve CRM",
+		"description": "API collection for Movve CRM package",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "YOUR_API_TOKEN",
+			"type": "string"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"item": [
+		{
+			"name": "Contacts",
+			"item": [
+				{
+					"name": "List Contacts",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/api/crm/contacts?page=1&per_page=15&search=john",
+							"host": ["{{base_url}}"],
+							"path": ["api", "crm", "contacts"],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number"
+								},
+								{
+									"key": "per_page",
+									"value": "15",
+									"description": "Items per page"
+								},
+								{
+									"key": "search",
+									"value": "john",
+									"description": "Search term"
+								}
+							]
+						},
+						"description": "Get a list of all contacts with optional pagination and search"
+					}
+				},
+				{
+					"name": "Create Contact",
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{base_url}}/api/crm/contacts",
+							"host": ["{{base_url}}"],
+							"path": ["api", "crm", "contacts"]
+						},
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"john@example.com\",\n    \"phone_number\": \"1234567890\",\n    \"date_of_birth\": \"1990-01-01\"\n}"
+						},
+						"description": "Create a new contact"
+					}
+				},
+				{
+					"name": "Show Contact",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/api/crm/contacts/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "crm", "contacts", "1"]
+						},
+						"description": "Get details of a specific contact"
+					}
+				},
+				{
+					"name": "Update Contact",
+					"request": {
+						"method": "PUT",
+						"url": {
+							"raw": "{{base_url}}/api/crm/contacts/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "crm", "contacts", "1"]
+						},
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Johnny\",\n    \"last_name\": \"Doe\",\n    \"email\": \"johnny@example.com\"\n}"
+						},
+						"description": "Update an existing contact"
+					}
+				},
+				{
+					"name": "Delete Contact",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{base_url}}/api/crm/contacts/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "crm", "contacts", "1"]
+						},
+						"description": "Soft delete a contact"
+					}
+				},
+				{
+					"name": "Restore Contact",
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{base_url}}/api/crm/contacts/1/restore",
+							"host": ["{{base_url}}"],
+							"path": ["api", "crm", "contacts", "1", "restore"]
+						},
+						"description": "Restore a soft-deleted contact"
+					}
+				}
+			]
+		}
+	]
+}

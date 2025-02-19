@@ -1,0 +1,29 @@
+{
+    "name": "movve/crm",
+    "description": "CRM package for Movve",
+    "type": "library",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Movve\\Crm\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Movve",
+            "email": "info@movve.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.1"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Movve\\Crm\\CrmServiceProvider"
+            ]
+        }
+    }
+}
