@@ -22,6 +22,8 @@ return [
     'available_locales' => [
         'en' => 'English',
         'nl' => 'Nederlands',
+        'tr' => 'Türkçe',
+        'ru' => 'Русский',
     ],
 
     'key' => env('APP_KEY'),
