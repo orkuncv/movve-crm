@@ -2,9 +2,23 @@
 
 use Illuminate\Support\Facades\Route;
 use Movve\Crm\Http\Controllers\ContactViewController;
+use App\Http\Middleware\LocaleMiddleware;
 
+// Non-localized routes (for API or redirects)
 Route::middleware(['web', 'auth:sanctum', 'verified'])
     ->prefix('crm')
+    ->name('crm.')
+    ->group(function () {
+        // Redirect to localized version
+        Route::get('/contacts', function () {
+            return redirect(app()->getLocale() . '/crm/contacts');
+        })->name('contacts.redirect');
+    });
+
+// Localized routes
+Route::prefix('{locale}/crm')
+    ->where(['locale' => '[a-zA-Z]{2}'])
+    ->middleware(['web', 'auth:sanctum', 'verified', LocaleMiddleware::class])
     ->name('crm.')
     ->group(function () {
         Route::get('/contacts', [ContactViewController::class, 'index'])->name('contacts.index');

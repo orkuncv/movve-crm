@@ -15,6 +15,9 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('crm.contacts.index', ['locale' => app()->getLocale()]) }}" :active="request()->routeIs('crm.contacts.*')">
+                        {{ __('Contacts') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -75,7 +78,7 @@
                 <div class="ms-3 relative">
                     <x-language-switcher/>
                 </div>
-                
+
                 <!-- Settings Dropdown -->
                 <div class="ms-3 relative">
                     <x-dropdown align="right" width="48">
@@ -146,6 +149,9 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('crm.contacts.index') }}" :active="request()->routeIs('crm.contacts.*')">
+                {{ __('Contacts') }}
             </x-responsive-nav-link>
         </div>
 
