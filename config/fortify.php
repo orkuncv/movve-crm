@@ -73,7 +73,10 @@ return [
     |
     */
 
-    'home' => '/dashboard',
+    'home' => function () {
+        $locale = session()->get('locale') ?? config('app.fallback_locale', 'en');
+        return "/$locale/dashboard";
+    },
 
     /*
     |--------------------------------------------------------------------------

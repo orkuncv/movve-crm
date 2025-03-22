@@ -18,6 +18,12 @@ Route::get('/', function () {
     return redirect(app()->getLocale());
 });
 
+// Redirect dashboard to localized dashboard
+Route::get('/dashboard', function () {
+    $locale = session()->get('locale') ?? config('app.fallback_locale', 'en');
+    return redirect("/$locale/dashboard");
+});
+
 // Language switcher
 Route::get('language/{locale}', [LanguageController::class, 'switchLang'])
     ->name('language.switch')
@@ -28,7 +34,7 @@ Route::prefix('{locale}')
     ->where(['locale' => '[a-zA-Z]{2}'])
     ->middleware([LocaleMiddleware::class])
     ->group(function () {
-        
+
         // Welcome/Home page
         Route::get('/', function () {
             return view('welcome');
@@ -40,7 +46,7 @@ Route::prefix('{locale}')
             Route::get('login', function () {
                 return view('auth.login');
             })->name('login');
-            
+
             Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
             // Registration
@@ -48,7 +54,7 @@ Route::prefix('{locale}')
                 Route::get('register', function () {
                     return view('auth.register');
                 })->name('register');
-                
+
                 Route::post('register', [RegisteredUserController::class, 'store']);
             }
         });
@@ -61,12 +67,4 @@ Route::prefix('{locale}')
         });
     });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+// Deze route is verwijderd omdat deze conflicteert met de gelokaliseerde versie

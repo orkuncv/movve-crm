@@ -66,6 +66,7 @@ return [
          */
         Laravel\Fortify\FortifyServiceProvider::class,
         Laravel\Jetstream\JetstreamServiceProvider::class,
+        Movve\Crm\CrmServiceProvider::class,
 
         /*
          * Application Service Providers...

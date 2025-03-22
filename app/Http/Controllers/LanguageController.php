@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 class LanguageController extends Controller
 {
@@ -14,6 +15,9 @@ class LanguageController extends Controller
         if (!array_key_exists($locale, config('app.available_locales'))) {
             return redirect()->back();
         }
+
+        // Store the locale in the session
+        Session::put('locale', $locale);
 
         // Get the referrer URL
         $previousUrl = url()->previous();

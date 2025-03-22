@@ -1,5 +1,5 @@
 <div x-data="{ open: false }" class="relative">
-    <button @click="open = !open" class="inline-flex border-2 tems-center px-4 py-2 text-sm font-medium text-black bg-transparent rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20">
+    <button @click="open = !open" class="inline-flex border-2 items-center px-4 py-2 text-sm font-medium text-black bg-transparent rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20">
         @if(App::getLocale() === 'en')
             <span class="flag-icon flag-icon-gb mr-2 rounded-sm"></span>
         @else
@@ -12,6 +12,7 @@
     </button>
 
     <div x-show="open"
+         x-cloak
          @click.away="open = false"
          x-transition:enter="transition ease-out duration-100"
          x-transition:enter-start="transform opacity-0 scale-95"
@@ -38,6 +39,10 @@
         </div>
     </div>
 </div>
+
+<style>
+    [x-cloak] { display: none !important; }
+</style>
 
 @push('scripts')
 <script>

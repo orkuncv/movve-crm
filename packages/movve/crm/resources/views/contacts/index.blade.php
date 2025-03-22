@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="md:col-span-2">
                             <form method="GET" action="{{ route('crm.contacts.index', ['locale' => app()->getLocale()]) }}" class="flex">
                                 <x-input
@@ -55,17 +55,17 @@
                     <div class="overflow-x-auto bg-white rounded-lg shadow-sm border border-gray-100">
                         <table class="w-full whitespace-no-wrap">
                             <thead>
-                                <tr class="text-left">
-                                    <th class="px-6 py-3 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 font-medium text-sm tracking-wider uppercase">{{ __('Name') }}</th>
-                                    <th class="px-6 py-3 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 font-medium text-sm tracking-wider uppercase">{{ __('Email') }}</th>
-                                    <th class="px-6 py-3 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 font-medium text-sm tracking-wider uppercase">{{ __('Phone') }}</th>
-                                    <th class="px-6 py-3 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 font-medium text-sm tracking-wider uppercase">{{ __('Date of Birth') }}</th>
-                                    <th class="px-6 py-3 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 font-medium text-sm tracking-wider uppercase">{{ __('Created At') }}</th>
-                                    <th class="px-6 py-3 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 font-medium text-sm tracking-wider uppercase">{{ __('Actions') }}</th>
+                                <tr class="text-left bg-gray-50 border-b border-gray-100">
+                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('Name') }}</th>
+                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('Email') }}</th>
+                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('Phone') }}</th>
+                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('Date of Birth') }}</th>
+                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('Created') }}</th>
+                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-100">
-                                @forelse ($contacts as $contact)
+                            <tbody class="divide-y divide-gray-100">
+                                @forelse($contacts as $contact)
                                     <tr class="hover:bg-gray-50 transition-colors duration-150">
                                         <td class="px-6 py-4">
                                             <div class="flex items-center">
@@ -118,7 +118,7 @@
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 flex space-x-2">
-                                            <a href="{{ route('crm.contacts.show', ['locale' => app()->getLocale(), 'contact' => $contact]) }}" 
+                                            <a href="/{{ app()->getLocale() }}/crm/contacts/{{ $contact->id }}"
                                                class="inline-flex items-center px-3 py-1.5 bg-indigo-600 border border-transparent rounded-md text-xs text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-150 shadow-sm">
                                                 <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -126,7 +126,7 @@
                                                 </svg>
                                                 {{ __('View') }}
                                             </a>
-                                            <a href="{{ route('crm.contacts.edit', ['locale' => app()->getLocale(), 'contact' => $contact]) }}" 
+                                            <a href="/{{ app()->getLocale() }}/crm/contacts/{{ $contact->id }}/edit"
                                                class="inline-flex items-center px-3 py-1.5 bg-gray-600 border border-transparent rounded-md text-xs text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors duration-150 shadow-sm">
                                                 <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
