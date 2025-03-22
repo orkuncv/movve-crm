@@ -1,5 +1,5 @@
 <div x-data="{ open: false }" class="relative">
-    <button @click="open = !open" class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-transparent rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20">
+    <button @click="open = !open" class="inline-flex border-2 tems-center px-4 py-2 text-sm font-medium text-black bg-transparent rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20">
         @if(App::getLocale() === 'en')
             <span class="flag-icon flag-icon-gb mr-2 rounded-sm"></span>
         @else
@@ -11,7 +11,7 @@
         </svg>
     </button>
 
-    <div x-show="open" 
+    <div x-show="open"
          @click.away="open = false"
          x-transition:enter="transition ease-out duration-100"
          x-transition:enter-start="transform opacity-0 scale-95"
@@ -23,8 +23,8 @@
         <div class="py-1" role="menu" aria-orientation="vertical">
             @foreach(config('app.available_locales') as $locale => $language)
                 @if($locale !== App::getLocale())
-                    <a href="{{ url('language/' . $locale) }}" 
-                       class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" 
+                    <a href="{{ url('language/' . $locale) }}"
+                       class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                        role="menuitem">
                         @if($locale === 'en')
                             <span class="flag-icon flag-icon-gb mr-2 rounded-sm"></span>
