@@ -1,0 +1,64 @@
+name: Test After Deploy
+
+on:
+  # Trigger na een succesvolle deployment
+  deployment_status:
+    branches: [ main ]
+    # Alleen uitvoeren als de deployment succesvol was
+    if: github.event.deployment_status.state == 'success'
+
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: mbstring, dom, fileinfo, mysql, gd, curl, zip, sqlite, xml
+        coverage: xdebug
+    
+    - name: Copy .env
+      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+    
+    - name: Install Composer dependencies
+      run: composer install --no-interaction --prefer-dist --optimize-autoloader
+    
+    - name: Generate key
+      run: php artisan key:generate
+    
+    - name: Directory permissions
+      run: chmod -R 777 storage bootstrap/cache
+    
+    - name: Create Database
+      run: |
+        mkdir -p database
+        touch database/database.sqlite
+    
+    - name: Run migrations
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
+      run: php artisan migrate --force
+    
+    - name: Run API tests
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
+      run: php artisan test --testsuite=Feature
+    
+    # Stuur een notificatie als tests falen
+    - name: Send notification on failure
+      if: failure()
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_CHANNEL: alerts
+        SLACK_COLOR: danger
+        SLACK_ICON: https://github.com/rtCamp.png?size=48
+        SLACK_MESSAGE: 'API Tests failed after deployment :warning:'
+        SLACK_TITLE: Failed API Tests
+        SLACK_USERNAME: GitHub Actions
