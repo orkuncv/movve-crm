@@ -4,13 +4,19 @@ namespace Movve\Crm\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Jetstream\Jetstream;
 use Movve\Crm\Models\Contact;
 
 class ContactViewController extends Controller
 {
     public function index(Request $request)
     {
+        // Haal het huidige team op
+        $team = Jetstream::newTeamModel()->find($request->user()->currentTeam->id);
+        
         $contacts = Contact::query()
+            ->where('team_id', $team->id) // Filter op team_id
             ->when($request->search, function ($query, $search) {
                 $query->where(function ($query) use ($search) {
                     $query->where('first_name', 'like', "%{$search}%")
@@ -38,6 +44,9 @@ class ContactViewController extends Controller
             'phone_number' => ['nullable', 'string', 'max:255'],
             'date_of_birth' => ['nullable', 'date'],
         ]);
+
+        // Voeg team_id toe aan de gevalideerde data
+        $validated['team_id'] = $request->user()->currentTeam->id;
 
         Contact::create($validated);
 
@@ -79,6 +88,14 @@ class ContactViewController extends Controller
                     ->with('error', 'Contact niet gevonden');
             }
             
+            // Controleer of het contact behoort tot het huidige team
+            if ($contact->team_id != Auth::user()->currentTeam->id) {
+                \Log::warning('Contact behoort niet tot het huidige team: ' . $id);
+                return redirect()
+                    ->to('/' . app()->getLocale() . '/crm/contacts')
+                    ->with('error', 'Je hebt geen toegang tot dit contact');
+            }
+            
             \Log::info('Contact gevonden', ['contact' => $contact->toArray()]);
             return view('crm::contacts.show', compact('contact'));
         } catch (\Exception $e) {
@@ -100,6 +117,14 @@ class ContactViewController extends Controller
     {
         try {
             $contact = Contact::findOrFail($id);
+            
+            // Controleer of het contact behoort tot het huidige team
+            if ($contact->team_id != Auth::user()->currentTeam->id) {
+                return redirect()
+                    ->to('/' . app()->getLocale() . '/crm/contacts')
+                    ->with('error', 'Je hebt geen toegang tot dit contact');
+            }
+            
             return view('crm::contacts.edit', compact('contact'));
         } catch (\Exception $e) {
             return redirect()
@@ -112,6 +137,13 @@ class ContactViewController extends Controller
     {
         try {
             $contact = Contact::findOrFail($id);
+            
+            // Controleer of het contact behoort tot het huidige team
+            if ($contact->team_id != Auth::user()->currentTeam->id) {
+                return redirect()
+                    ->to('/' . app()->getLocale() . '/crm/contacts')
+                    ->with('error', 'Je hebt geen toegang tot dit contact');
+            }
 
             $validated = $request->validate([
                 'first_name' => ['required', 'string', 'max:255'],

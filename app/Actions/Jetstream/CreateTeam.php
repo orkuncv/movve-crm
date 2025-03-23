@@ -21,9 +21,18 @@ class CreateTeam implements CreatesTeams
     {
         Gate::forUser($user)->authorize('create', Jetstream::newTeamModel());
 
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-        ])->validateWithBag('createTeam');
+        // Aangepaste validatie om problemen met preg_match te vermijden
+        if (empty($input['name'])) {
+            throw new \Illuminate\Validation\ValidationException(validator([], ['name' => 'required'], ['name.required' => 'The team name field is required.'])->errors());
+        }
+        
+        if (!is_string($input['name'])) {
+            throw new \Illuminate\Validation\ValidationException(validator([], ['name' => 'string'], ['name.string' => 'The team name must be a string.'])->errors());
+        }
+        
+        if (strlen($input['name']) > 255) {
+            throw new \Illuminate\Validation\ValidationException(validator([], ['name' => 'max:255'], ['name.max' => 'The team name may not be greater than 255 characters.'])->errors());
+        }
 
         AddingTeam::dispatch($user);
 
