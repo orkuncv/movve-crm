@@ -9,11 +9,11 @@ use Movve\Crm\Http\Controllers\TestController;
 Route::group([
     'prefix' => '{locale}/crm',
     'where' => ['locale' => '[a-zA-Z]{2}'],
-    'middleware' => ['web', 'crm.auth']
+    'middleware' => ['web', 'crm.auth', 'crm.locale']
 ], function () {
     // Debug route
     Route::get('/debug', function() {
-        return 'CRM routes loaded. Current locale: ' . request()->segment(1);
+        return 'CRM routes loaded. Current locale: ' . app()->getLocale();
     });
     
     // Verwijder test routes en ongebruikte routes

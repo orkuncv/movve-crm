@@ -2,13 +2,13 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-bold text-2xl gradient-text">
-                {{ __('Contacts') }}
+                {{ __('crm::crm.contacts') }}
             </h2>
             <a href="/{{ app()->getLocale() }}/crm/contacts/create" class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 border border-transparent rounded-lg font-semibold text-sm text-white tracking-wider hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 shadow-md hover:shadow-lg">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                 </svg>
-                {{ __('Add Contact') }}
+                {{ __('crm::crm.create_contact') }}
             </a>
         </div>
     </x-slot>
@@ -22,7 +22,7 @@
                         <div class="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 rounded-lg shadow-sm">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <p class="text-gray-500 text-sm">{{ __('Total Contacts') }}</p>
+                                    <p class="text-gray-500 text-sm">{{ __('crm::crm.total_contacts') }}</p>
                                     <p class="text-2xl font-bold text-gray-800">{{ $contacts->total() }}</p>
                                 </div>
                                 <div class="bg-indigo-100 p-3 rounded-full">
@@ -38,7 +38,7 @@
                                 <x-input
                                     type="search"
                                     name="search"
-                                    placeholder="{{ __('Search by name, email...') }}"
+                                    placeholder="{{ __('crm::crm.search_placeholder') }}"
                                     value="{{ request('search') }}"
                                     class="block w-full rounded-r-none focus:ring-indigo-500 focus:border-indigo-500"
                                 />
@@ -56,12 +56,12 @@
                         <table class="w-full whitespace-no-wrap">
                             <thead>
                                 <tr class="text-left bg-gray-50 border-b border-gray-100">
-                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('Name') }}</th>
-                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('Email') }}</th>
-                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('Phone') }}</th>
-                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('Date of Birth') }}</th>
-                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('Created') }}</th>
-                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('Actions') }}</th>
+                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('crm::crm.name') }}</th>
+                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('crm::crm.email') }}</th>
+                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('crm::crm.phone_number') }}</th>
+                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('crm::crm.date_of_birth') }}</th>
+                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('crm::crm.created_at') }}</th>
+                                    <th class="px-6 py-3 text-gray-500 font-medium text-sm uppercase tracking-wider">{{ __('crm::crm.actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-100">

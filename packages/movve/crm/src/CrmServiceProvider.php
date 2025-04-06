@@ -10,6 +10,7 @@ use Movve\Crm\Http\Livewire\ContactMetaCounter;
 use Movve\Crm\Http\Livewire\ContactNotesEditor;
 use Movve\Crm\Http\Livewire\Teams\ManageTeamMetaFields;
 use Movve\Crm\Http\Middleware\CheckCrmPermission;
+use Movve\Crm\Http\Middleware\CrmLocaleMiddleware;
 use Movve\Crm\Http\Middleware\RedirectIfNotAuthenticated;
 use Movve\Crm\Models\Contact;
 use Movve\Crm\Models\ContactMeta;
@@ -35,6 +36,7 @@ class CrmServiceProvider extends ServiceProvider
         $router = $this->app['router'];
         $router->aliasMiddleware('crm.permission', CheckCrmPermission::class);
         $router->aliasMiddleware('crm.auth', RedirectIfNotAuthenticated::class);
+        $router->aliasMiddleware('crm.locale', CrmLocaleMiddleware::class);
 
         // Registreer de ContactActivityLogger service als singleton
         $this->app->singleton(ContactActivityLogger::class, function ($app) {
@@ -58,6 +60,12 @@ class CrmServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/crm'),
         ], 'crm-views');
+        
+        // Load translations
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'crm');
+        $this->publishes([
+            __DIR__.'/../resources/lang' => resource_path('lang/vendor/crm'),
+        ], 'crm-translations');
 
         // Register Livewire components if needed
         if (class_exists(Livewire::class)) {
