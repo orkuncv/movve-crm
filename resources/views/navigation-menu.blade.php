@@ -50,11 +50,7 @@
                                         {{ __('Team Settings') }}
                                     </x-dropdown-link>
 
-                                    @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                                        <x-dropdown-link href="{{ route('teams.create', app()->getLocale()) }}">
-                                            {{ __('Create New Team') }}
-                                        </x-dropdown-link>
-                                    @endcan
+                                    {{-- Optie voor het aanmaken van teams is verwijderd - Teams kunnen alleen worden aangemaakt via CLI --}}
 
                                     <!-- Team Switcher -->
                                     @if (Auth::user()->allTeams()->count() > 1)
@@ -205,11 +201,7 @@
                         {{ __('Team Settings') }}
                     </x-responsive-nav-link>
 
-                    @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                        <x-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')">
-                            {{ __('Create New Team') }}
-                        </x-responsive-nav-link>
-                    @endcan
+                    {{-- Optie voor het aanmaken van teams is verwijderd - Teams kunnen alleen worden aangemaakt via CLI --}}
 
                     <!-- Team Switcher -->
                     @if (Auth::user()->allTeams()->count() > 1)

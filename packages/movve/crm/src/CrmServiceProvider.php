@@ -35,14 +35,13 @@ class CrmServiceProvider extends ServiceProvider
         $router = $this->app['router'];
         $router->aliasMiddleware('crm.permission', CheckCrmPermission::class);
         $router->aliasMiddleware('crm.auth', RedirectIfNotAuthenticated::class);
-        
+
         // Registreer de ContactActivityLogger service als singleton
         $this->app->singleton(ContactActivityLogger::class, function ($app) {
             return new ContactActivityLogger();
         });
-        
+
         // Register observers
-        Team::observe(TeamObserver::class);
         Contact::observe(ContactObserver::class);
         ContactMeta::observe(ContactMetaObserver::class);
         ContactNote::observe(ContactNoteObserver::class);
