@@ -10,7 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
-use App\Traits\Jetstream\HasNoPersonalTeams;
+use App\Traits\JetStream\HasNoPersonalTeams;
 
 class User extends Authenticatable
 {
