@@ -29,6 +29,9 @@ class JetstreamServiceProvider extends ServiceProvider
     {
         $this->configurePermissions();
 
+        // Configureer team-gerelateerde acties
+        // Opmerking: createTeamsUsing is nog steeds nodig voor de functionaliteit om handmatig teams aan te maken
+        // maar we hebben de automatische creatie in CreateNewUser.php uitgeschakeld
         Jetstream::createTeamsUsing(CreateTeam::class);
         Jetstream::updateTeamNamesUsing(UpdateTeamName::class);
         Jetstream::addTeamMembersUsing(AddTeamMember::class);
@@ -36,6 +39,9 @@ class JetstreamServiceProvider extends ServiceProvider
         Jetstream::removeTeamMembersUsing(RemoveTeamMember::class);
         Jetstream::deleteTeamsUsing(DeleteTeam::class);
         Jetstream::deleteUsersUsing(DeleteUser::class);
+        
+        // Opmerking: De automatische teamcreatie is uitgeschakeld in CreateNewUser.php
+        // door de regel $this->createTeam($user) uit te commentariëren
     }
 
     /**
