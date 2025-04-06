@@ -68,13 +68,9 @@
                     {{ __('Powerful, intuitive, and modern CRM solution designed to help your business grow and succeed in the digital age.') }}
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-16">
-                    <a href="#demo"
+                    <a href="{{ route('login', ['locale' => app()->getLocale()]) }}"
                        class="bg-indigo-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-indigo-700 transition-colors duration-200 w-full sm:w-auto shadow-md">
-                        {{ __('Watch Demo') }}
-                    </a>
-                    <a href="#learn-more"
-                       class="border border-gray-300 bg-white text-gray-700 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-50 transition-colors duration-200 w-full sm:w-auto">
-                        {{ __('Learn More') }}
+                        {{ __('Login') }}
                     </a>
                 </div>
 
