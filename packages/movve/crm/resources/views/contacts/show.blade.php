@@ -2,20 +2,20 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-bold text-2xl gradient-text">
-                {{ __('Contact Details') }}
+                {{ __('crm::crm.contact_details') }}
             </h2>
             <div class="flex space-x-3">
                 <a href="/{{ app()->getLocale() }}/crm/contacts/{{ $contact->id }}/edit" class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 border border-transparent rounded-lg font-semibold text-sm text-white tracking-wider hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 shadow-md hover:shadow-lg">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                     </svg>
-                    {{ __('Edit Contact') }}
+                    {{ __('crm::crm.edit_contact') }}
                 </a>
                 <a href="/{{ app()->getLocale() }}/crm/contacts" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg font-semibold text-sm text-gray-700 tracking-wider hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md">
                     <svg class="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
                     </svg>
-                    {{ __('Back to Contacts') }}
+                    {{ __('crm::crm.back_to_contacts') }}
                 </a>
             </div>
         </div>
@@ -63,11 +63,11 @@
 
                     <!-- Contact Details -->
                     <div class="border-t border-gray-200 pt-6">
-                        <h4 class="text-lg font-medium text-gray-900 mb-4">{{ __('Contact Information') }}</h4>
+                        <h4 class="text-lg font-medium text-gray-900 mb-4">{{ __('crm::crm.contact_information') }}</h4>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <!-- First Name -->
                             <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                                <div class="text-sm font-medium text-gray-500 mb-1">{{ __('First Name') }}</div>
+                                <div class="text-sm font-medium text-gray-500 mb-1">{{ __('crm::crm.first_name') }}</div>
                                 <div class="text-gray-900 font-medium">
                                     {{ $contact->first_name }}
                                 </div>
@@ -75,7 +75,7 @@
 
                             <!-- Last Name -->
                             <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                                <div class="text-sm font-medium text-gray-500 mb-1">{{ __('Last Name') }}</div>
+                                <div class="text-sm font-medium text-gray-500 mb-1">{{ __('crm::crm.last_name') }}</div>
                                 <div class="text-gray-900 font-medium">
                                     {{ $contact->last_name }}
                                 </div>
@@ -83,7 +83,7 @@
 
                             <!-- Email -->
                             <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                                <div class="text-sm font-medium text-gray-500 mb-1">{{ __('Email') }}</div>
+                                <div class="text-sm font-medium text-gray-500 mb-1">{{ __('crm::crm.email') }}</div>
                                 <div class="text-gray-900 font-medium">
                                     {{ $contact->email }}
                                 </div>
@@ -91,7 +91,7 @@
 
                             <!-- Phone Number -->
                             <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                                <div class="text-sm font-medium text-gray-500 mb-1">{{ __('Phone Number') }}</div>
+                                <div class="text-sm font-medium text-gray-500 mb-1">{{ __('crm::crm.phone_number') }}</div>
                                 <div class="text-gray-900 font-medium">
                                     {{ $contact->phone_number ?? '-' }}
                                 </div>
@@ -99,7 +99,7 @@
 
                             <!-- Date of Birth -->
                             <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                                <div class="text-sm font-medium text-gray-500 mb-1">{{ __('Date of Birth') }}</div>
+                                <div class="text-sm font-medium text-gray-500 mb-1">{{ __('crm::crm.date_of_birth') }}</div>
                                 <div class="text-gray-900 font-medium">
                                     {{ $contact->date_of_birth ? $contact->date_of_birth->format('d M Y') : '-' }}
                                 </div>
@@ -107,7 +107,7 @@
 
                             <!-- Created At -->
                             <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                                <div class="text-sm font-medium text-gray-500 mb-1">{{ __('Created At') }}</div>
+                                <div class="text-sm font-medium text-gray-500 mb-1">{{ __('crm::crm.created_at') }}</div>
                                 <div class="text-gray-900 font-medium">
                                     {{ $contact->created_at->format('d M Y, H:i') }}
                                 </div>
@@ -126,7 +126,7 @@
 
                         @if($metaFields->isEmpty())
                             <div class="bg-gray-50 p-6 rounded-lg border border-gray-100 text-center">
-                                <div class="text-gray-500">{{ __('No meta fields configured for this team.') }}</div>
+                                <div class="text-gray-500">{{ __('crm::crm.no_meta_fields') }}</div>
                             </div>
                         @else
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -152,7 +152,7 @@
                                                     <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                                     </svg>
-                                                    {{ __('Visited') }}
+                                                    {{ __('crm::crm.visited') }}
                                                 </button>
                                                 <div class="mt-2 text-xs text-gray-500">
                                                     Laatste update: {{ now() }}

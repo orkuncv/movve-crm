@@ -2,14 +2,14 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-bold text-2xl gradient-text">
-                {{ __('Add Contact') }}
+                {{ __('crm::crm.create_contact') }}
             </h2>
             <div class="flex space-x-3">
                 <a href="/{{ app()->getLocale() }}/crm/contacts" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg font-semibold text-sm text-gray-700 tracking-wider hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md">
                     <svg class="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
                     </svg>
-                    {{ __('Back to Contacts') }}
+                    {{ __('crm::crm.back_to_contacts') }}
                 </a>
             </div>
         </div>
@@ -34,7 +34,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <!-- First Name -->
                             <div>
-                                <x-label for="first_name" value="{{ __('First Name') }}" class="text-gray-700 font-medium" />
+                                <x-label for="first_name" value="{{ __('crm::crm.first_name') }}" class="text-gray-700 font-medium" />
                                 <div class="mt-1 relative rounded-md shadow-sm">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -48,7 +48,7 @@
 
                             <!-- Last Name -->
                             <div>
-                                <x-label for="last_name" value="{{ __('Last Name') }}" class="text-gray-700 font-medium" />
+                                <x-label for="last_name" value="{{ __('crm::crm.last_name') }}" class="text-gray-700 font-medium" />
                                 <div class="mt-1 relative rounded-md shadow-sm">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,7 +62,7 @@
 
                             <!-- Email -->
                             <div>
-                                <x-label for="email" value="{{ __('Email') }}" class="text-gray-700 font-medium" />
+                                <x-label for="email" value="{{ __('crm::crm.email') }}" class="text-gray-700 font-medium" />
                                 <div class="mt-1 relative rounded-md shadow-sm">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -76,7 +76,7 @@
 
                             <!-- Phone Number -->
                             <div>
-                                <x-label for="phone_number" value="{{ __('Phone Number') }}" class="text-gray-700 font-medium" />
+                                <x-label for="phone_number" value="{{ __('crm::crm.phone_number') }}" class="text-gray-700 font-medium" />
                                 <div class="mt-1 relative rounded-md shadow-sm">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,7 +90,7 @@
 
                             <!-- Date of Birth -->
                             <div>
-                                <x-label for="date_of_birth" value="{{ __('Date of Birth') }}" class="text-gray-700 font-medium" />
+                                <x-label for="date_of_birth" value="{{ __('crm::crm.date_of_birth') }}" class="text-gray-700 font-medium" />
                                 <div class="mt-1 relative rounded-md shadow-sm">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -108,13 +108,13 @@
                                 <svg class="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                                 </svg>
-                                {{ __('Cancel') }}
+                                {{ __('crm::crm.cancel') }}
                             </a>
                             <button type="submit" class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 border border-transparent rounded-lg font-semibold text-sm text-white tracking-wider hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 shadow-md hover:shadow-lg">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                 </svg>
-                                {{ __('Create Contact') }}
+                                {{ __('crm::crm.create_contact') }}
                             </button>
                         </div>
                     </form>

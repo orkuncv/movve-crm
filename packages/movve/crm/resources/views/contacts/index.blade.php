@@ -124,14 +124,14 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                                                 </svg>
-                                                {{ __('View') }}
+                                                {{ __('crm::crm.view') }}
                                             </a>
                                             <a href="/{{ app()->getLocale() }}/crm/contacts/{{ $contact->id }}/edit"
                                                class="inline-flex items-center px-3 py-1.5 bg-gray-600 border border-transparent rounded-md text-xs text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors duration-150 shadow-sm">
                                                 <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                 </svg>
-                                                {{ __('Edit') }}
+                                                {{ __('crm::crm.edit') }}
                                             </a>
                                         </td>
                                     </tr>
@@ -144,13 +144,13 @@
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                                                     </svg>
                                                 </div>
-                                                <h3 class="text-lg font-medium text-gray-900 mb-1">{{ __('No contacts found') }}</h3>
-                                                <p class="text-gray-500 mb-4">{{ __('Get started by creating your first contact') }}</p>
+                                                <h3 class="text-lg font-medium text-gray-900 mb-1">{{ __('crm::crm.no_contacts_found') }}</h3>
+                                                <p class="text-gray-500 mb-4">{{ __('crm::crm.add_new_contact') }}</p>
                                                 <a href="/{{ app()->getLocale() }}/crm/contacts/create" class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 border border-transparent rounded-lg font-semibold text-sm text-white tracking-wider hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 shadow-md hover:shadow-lg">
                                                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                                                     </svg>
-                                                    {{ __('Add Contact') }}
+                                                    {{ __('crm::crm.create_contact') }}
                                                 </a>
                                             </div>
                                         </td>
