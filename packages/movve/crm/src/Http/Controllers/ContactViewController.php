@@ -58,11 +58,16 @@ class ContactViewController extends Controller
     public function show($id)
     {
         try {
+            // Haal de juiste ID parameter uit de URL
+            // Als de URL /en/crm/contacts/2 is, dan is segment(3) = 'contacts' en segment(4) = '2'
+            $contactId = request()->segment(4);
+            
             // Debug informatie
             \Log::info('ContactViewController@show aangeroepen', [
-                'id' => $id,
-                'type' => gettype($id),
+                'id_parameter' => $id, // Dit is meestal de locale parameter
+                'contact_id' => $contactId, // Dit is het werkelijke contact ID
                 'request_path' => request()->path(),
+                'segments' => request()->segments(),
                 'locale' => app()->getLocale()
             ]);
             
@@ -78,11 +83,11 @@ class ContactViewController extends Controller
             $count = Contact::count();
             \Log::info('Aantal contacten in database: ' . $count);
             
-            // Probeer het contact op te halen
-            $contact = Contact::find($id);
+            // Probeer het contact op te halen met het juiste ID
+            $contact = Contact::find($contactId);
             
             if (!$contact) {
-                \Log::warning('Contact niet gevonden met ID: ' . $id);
+                \Log::warning('Contact niet gevonden met ID: ' . $contactId);
                 return redirect()
                     ->to('/' . app()->getLocale() . '/crm/contacts')
                     ->with('error', 'Contact niet gevonden');
@@ -116,7 +121,19 @@ class ContactViewController extends Controller
     public function edit($id)
     {
         try {
-            $contact = Contact::findOrFail($id);
+            // Haal de juiste ID parameter uit de URL
+            // Voor /en/crm/contacts/2/edit is segment(4) = '2'
+            $contactId = request()->segment(4);
+            
+            // Debug informatie
+            \Log::info('ContactViewController@edit aangeroepen', [
+                'id_parameter' => $id, // Dit is meestal de locale parameter
+                'contact_id' => $contactId, // Dit is het werkelijke contact ID
+                'request_path' => request()->path(),
+                'segments' => request()->segments()
+            ]);
+            
+            $contact = Contact::findOrFail($contactId);
             
             // Controleer of het contact behoort tot het huidige team
             if ($contact->team_id != Auth::user()->currentTeam->id) {
@@ -136,15 +153,62 @@ class ContactViewController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $contact = Contact::findOrFail($id);
+            // Haal de juiste ID parameter uit de URL
+            // Voor /en/crm/contacts/2 (PUT/POST request) is segment(4) = '2'
+            $contactId = request()->segment(4);
+            
+            // Debug informatie
+            \Log::info('ContactViewController@update aangeroepen', [
+                'id_parameter' => $id, // Dit is meestal de locale parameter
+                'contact_id' => $contactId, // Dit is het werkelijke contact ID
+                'request_path' => request()->path(),
+                'segments' => request()->segments(),
+                'request_method' => $request->method(),
+                'request_data' => $request->all(),
+                'has_method_field' => $request->has('_method'),
+                'method_field' => $request->input('_method'),
+            ]);
+            
+            // Controleer of we een geldig contact ID hebben
+            if (!$contactId || !is_numeric($contactId)) {
+                \Log::error('Ongeldig contact ID', [
+                    'id_parameter' => $id,
+                    'contact_id' => $contactId,
+                ]);
+                
+                return redirect()
+                    ->to('/' . app()->getLocale() . '/crm/contacts')
+                    ->with('error', 'Ongeldig contact ID');
+            }
+            
+            // Haal het contact op
+            $contact = Contact::find($contactId);
+            
+            // Controleer of het contact bestaat
+            if (!$contact) {
+                \Log::error('Contact niet gevonden', [
+                    'contact_id' => $contactId,
+                ]);
+                
+                return redirect()
+                    ->to('/' . app()->getLocale() . '/crm/contacts')
+                    ->with('error', 'Contact niet gevonden');
+            }
             
             // Controleer of het contact behoort tot het huidige team
             if ($contact->team_id != Auth::user()->currentTeam->id) {
+                \Log::warning('Contact behoort niet tot het huidige team', [
+                    'contact_id' => $contactId,
+                    'contact_team_id' => $contact->team_id,
+                    'user_team_id' => Auth::user()->currentTeam->id,
+                ]);
+                
                 return redirect()
                     ->to('/' . app()->getLocale() . '/crm/contacts')
                     ->with('error', 'Je hebt geen toegang tot dit contact');
             }
 
+            // Valideer de input
             $validated = $request->validate([
                 'first_name' => ['required', 'string', 'max:255'],
                 'last_name' => ['required', 'string', 'max:255'],
@@ -152,16 +216,70 @@ class ContactViewController extends Controller
                 'phone_number' => ['nullable', 'string', 'max:255'],
                 'date_of_birth' => ['nullable', 'date'],
             ]);
+            
+            // Log de gevalideerde data
+            \Log::info('Gevalideerde data', [
+                'contact_id' => $contactId,
+                'validated_data' => $validated,
+            ]);
+            
+            // Sla de oude waarden op voor het activiteitenlogboek
+            $oldValues = $contact->getAttributes();
+            
+            // Log de gevalideerde data
+            \Log::info('Gevalideerde data voor update in controller', [
+                'contact_id' => $contactId,
+                'validated_data' => $validated,
+            ]);
+            
+            // Update het contact met alleen de gevalideerde velden
+            $result = $contact->update($validated);
+            
+            // Als de update succesvol was, log de activiteit
+            if ($result) {
+                try {
+                    // Probeer de activiteit te loggen
+                    $activityLogger = app(\Movve\Crm\Services\ContactActivityLogger::class);
+                    $activityLogger->logUpdated($contact, $oldValues, $contact->getAttributes());
+                } catch (\Exception $e) {
+                    \Log::error('Fout bij het loggen van de activiteit', [
+                        'contact_id' => $contactId,
+                        'error' => $e->getMessage(),
+                    ]);
+                    // We laten de update doorgaan, zelfs als het loggen mislukt
+                }
+            }
+            
+            \Log::info('Contact update resultaat', [
+                'contact_id' => $contactId,
+                'update_result' => $result ? 'success' : 'failed',
+                'old_values' => $oldValues,
+                'new_values' => $contact->getAttributes(),
+            ]);
 
-            $contact->update($validated);
-
-            return redirect()
-                ->to('/' . app()->getLocale() . '/crm/contacts/' . $contact->id)
-                ->with('success', 'Contact updated successfully');
+            if ($result) {
+                return redirect()
+                    ->to('/' . app()->getLocale() . '/crm/contacts/' . $contact->id)
+                    ->with('success', 'Contact bijgewerkt');
+            } else {
+                return redirect()
+                    ->back()
+                    ->withInput()
+                    ->with('error', 'Fout bij het bijwerken van het contact');
+            }
         } catch (\Exception $e) {
+            \Log::error('Exception in update methode:', [
+                'id' => $id,
+                'message' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
             return redirect()
-                ->to('/' . app()->getLocale() . '/crm/contacts')
-                ->with('error', 'Contact not found.');
+                ->back()
+                ->withInput()
+                ->with('error', 'Fout bij het bijwerken van het contact: ' . $e->getMessage());
         }
     }
 }

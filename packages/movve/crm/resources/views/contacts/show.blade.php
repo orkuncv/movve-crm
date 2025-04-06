@@ -115,12 +115,97 @@
                         </div>
                     </div>
 
-                    <!-- Activity Section (placeholder for future expansion) -->
+                    <!-- Meta Fields Section -->
                     <div class="border-t border-gray-200 mt-8 pt-6">
-                        <h4 class="text-lg font-medium text-gray-900 mb-4">{{ __('Recent Activity') }}</h4>
-                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-100 text-center">
-                            <div class="text-gray-500">{{ __('No recent activity found for this contact.') }}</div>
-                        </div>
+
+                        @php
+                            $metaFields = \Movve\Crm\Models\TeamMetaField::where('team_id', auth()->user()->currentTeam->id)
+                                ->where('is_active', true)
+                                ->get();
+                        @endphp
+
+                        @if($metaFields->isEmpty())
+                            <div class="bg-gray-50 p-6 rounded-lg border border-gray-100 text-center">
+                                <div class="text-gray-500">{{ __('No meta fields configured for this team.') }}</div>
+                            </div>
+                        @else
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                @foreach($metaFields as $metaField)
+                                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                                        @if($metaField->type === 'counter' || $metaField->type === 'count')
+                                            @php
+                                                $meta = $contact->getMeta($metaField->key);
+                                                $counter = $meta ? $meta->counter : 0;
+                                            @endphp
+                                            <div class="flex flex-col space-y-2">
+                                                <div class="flex items-center justify-between">
+                                                    <span class="text-sm font-medium text-gray-700">{{ $metaField->name }}</span>
+                                                    <span id="counter-{{ $metaField->key }}" class="px-2 py-1 text-xs font-semibold rounded-full bg-indigo-100 text-indigo-800">
+                                                        {{ $counter }}
+                                                    </span>
+                                                </div>
+                                                <button
+                                                    type="button"
+                                                    class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                    onclick="incrementCounter('{{ $contact->id }}', '{{ $metaField->key }}', '{{ csrf_token() }}')"
+                                                >
+                                                    <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                                    </svg>
+                                                    {{ __('Visited') }}
+                                                </button>
+                                                <div class="mt-2 text-xs text-gray-500">
+                                                    Laatste update: {{ now() }}
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="text-sm font-medium text-gray-500 mb-1">{{ $metaField->name }}</div>
+                                            <div class="text-gray-900 font-medium">
+                                                @php
+                                                    $meta = $contact->getMeta($metaField->key);
+                                                    $value = $meta ? ($metaField->type === 'boolean' ? ($meta->value ? 'Yes' : 'No') : $meta->value) : '-';
+                                                @endphp
+                                                {{ $value }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+
+                    <!-- Notities Section -->
+                    <div class="border-t border-gray-200 mt-8 pt-6">
+                        @php
+                            // Haal het notities meta veld op
+                            $notesField = \Movve\Crm\Models\TeamMetaField::where('team_id', auth()->user()->currentTeam->id)
+                                ->where('key', 'notes')
+                                ->where('is_active', true)
+                                ->first();
+
+                            // Haal de notities op voor dit contact
+                            $notesMeta = null;
+                            if ($notesField) {
+                                $notesMeta = $contact->getMeta('notes');
+                            }
+                        @endphp
+
+                        <!-- Weergave van bestaande notities -->
+                        @if($notesMeta && $notesMeta->value)
+                            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 mb-6">
+                                <div class="prose max-w-none">
+                                    {!! $notesMeta->value !!}
+                                </div>
+                            </div>
+                        @endif
+
+                        <!-- Notities editor -->
+                        @livewire('movve.crm.contact-notes-editor', ['contact' => $contact], key('notes-'.$contact->id))
+                    </div>
+
+                    <!-- Activiteitenlogboek Section -->
+                    <div class="border-t border-gray-200 mt-8 pt-6">
+                        @livewire('movve.crm.contact-activity-log', ['contact' => $contact], key('activity-log-'.$contact->id))
                     </div>
                 </div>
             </div>

@@ -68,3 +68,8 @@ Route::prefix('{locale}')
     });
 
 // Deze route is verwijderd omdat deze conflicteert met de gelokaliseerde versie
+
+// Overschrijf de Jetstream current-team route met onze aangepaste controller
+Route::put('/current-team', [\App\Http\Controllers\CurrentTeamController::class, 'update'])
+    ->middleware(['web', 'auth:sanctum', \Laravel\Jetstream\Http\Middleware\AuthenticateSession::class, 'verified'])
+    ->name('current-team.update');

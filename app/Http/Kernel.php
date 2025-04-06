@@ -36,7 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\SetLocale::class, // Add this line
+            \App\Http\Middleware\SetLocale::class, // Zorgt ervoor dat de juiste locale wordt ingesteld
         ],
 
         'api' => [
@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'localize' => \App\Http\Middleware\LocaleMiddleware::class,
+        // We gebruiken nu een aangepaste Authenticate middleware die rekening houdt met de locale parameter
     ];
 }
