@@ -45,7 +45,15 @@
                                     <tr>
                                         <td class="border-t border-gray-100 align-top text-xs text-gray-400 px-2 py-0.5 w-16 text-right" x-text="row.time"></td>
                                         <template x-for="d in 7" :key="d">
-                                            <td class="border-t border-gray-100 align-top px-2 py-1 cursor-pointer min-w-[90px] h-8 relative group transition-colors duration-100 hover:z-10 hover:shadow-lg hover:bg-indigo-100/60"></td>
+                                            <td class="border-t border-gray-100 align-top px-2 py-1 cursor-pointer min-w-[90px] h-8 relative group transition-colors duration-100 hover:z-10 hover:shadow-lg hover:bg-indigo-100/60">
+                                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                                                    <button class="text-xs px-2 py-1 rounded-full bg-indigo-600 text-white shadow hover:bg-indigo-700 flex items-center pointer-events-auto" title="{{ __('crm::timetable.add_booking') }}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </td>
                                         </template>
                                     </tr>
                                 </template>
@@ -70,7 +78,15 @@
                                 <template x-for="row in dayRows" :key="row.key">
                                     <tr>
                                         <td class="border-t border-gray-100 align-top text-xs text-gray-400 px-2 py-0.5 w-16 text-right" x-text="row.time"></td>
-                                        <td class="border-t border-gray-100 align-top px-2 py-1 cursor-pointer min-w-[90px] h-8 relative group transition-colors duration-100 hover:z-10 hover:shadow-lg hover:bg-indigo-100/60"></td>
+                                        <td class="border-t border-gray-100 align-top px-2 py-1 cursor-pointer min-w-[90px] h-8 relative group transition-colors duration-100 hover:z-10 hover:shadow-lg hover:bg-indigo-100/60">
+                                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                                                <button class="text-xs px-2 py-1 rounded-full bg-indigo-600 text-white shadow hover:bg-indigo-700 flex items-center pointer-events-auto" title="{{ __('crm::timetable.add_booking') }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </template>
                             </tbody>
