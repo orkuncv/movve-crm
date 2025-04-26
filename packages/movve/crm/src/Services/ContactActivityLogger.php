@@ -42,7 +42,7 @@ class ContactActivityLogger
         return $this->log(
             $contact,
             'created',
-            'Contact aangemaakt',
+            __('crm::crm.contact_created'),
             ['contact_data' => $contact->toArray()]
         );
     }
@@ -71,7 +71,7 @@ class ContactActivityLogger
         return $this->log(
             $contact,
             'updated',
-            'Contact bijgewerkt',
+            __('crm::crm.contact_updated'),
             $changes
         );
     }
@@ -93,7 +93,7 @@ class ContactActivityLogger
         return $this->log(
             $contact,
             'counter_incremented',
-            $metaName . ' +1',
+            __('crm::crm.counter_incremented', ['meta' => $metaName]),
             [
                 'meta_id' => $meta->id,
                 'meta_key' => $metaField ? $metaField->key : null,
@@ -117,7 +117,7 @@ class ContactActivityLogger
         return $this->log(
             $contact,
             'note_added',
-            'Notitie toegevoegd: ' . $note->title,
+            __('crm::crm.note_added', ['title' => $note->title]),
             [
                 'note_id' => $note->id,
                 'note_title' => $note->title,
@@ -136,7 +136,7 @@ class ContactActivityLogger
         return $this->log(
             $contact,
             'deleted',
-            'Contact verwijderd',
+            __('crm::crm.contact_deleted'),
             ['contact_data' => $contact->toArray()]
         );
     }
@@ -152,7 +152,7 @@ class ContactActivityLogger
         return $this->log(
             $contact,
             'restored',
-            'Contact hersteld',
+            __('crm::crm.contact_restored'),
             ['contact_data' => $contact->toArray()]
         );
     }
@@ -170,7 +170,7 @@ class ContactActivityLogger
         return $this->log(
             $contact,
             'api_' . $apiAction,
-            'API: ' . $apiAction,
+            __('crm::crm.api_action', ['action' => $apiAction]),
             $data
         );
     }

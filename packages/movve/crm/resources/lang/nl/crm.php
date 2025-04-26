@@ -70,6 +70,25 @@ return [
     'new' => 'Nieuw',
     'api' => 'API',
     'show_changes' => 'Wijzigingen tonen',
+    'by_user' => 'door :user',
+    'updated' => 'Wijziging',
+    'created' => 'Nieuw',
+    'counter' => 'Teller',
+    'note' => 'Notitie',
+    'load_more' => 'Meer laden',
+    'show_less' => 'Toon minder',
+    'show_all' => 'Toon alles',
+    'no_activity_found' => 'Geen activiteiten gevonden voor dit contact.',
+    'contact_created' => 'Contact aangemaakt',
+    'contact_updated' => 'Contact bijgewerkt',
+    'counter_incremented' => ':meta +1',
+    'note_added' => 'Notitie toegevoegd: :title',
+    'contact_deleted' => 'Contact verwijderd',
+    'contact_restored' => 'Contact hersteld',
+    'api_action' => 'API: :action',
+    
+    // Notes
+    'no_notes_found' => 'Geen notities gevonden voor dit contact.',
     
     // Tags
     'tags' => 'Tags',

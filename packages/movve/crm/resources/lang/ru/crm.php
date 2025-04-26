@@ -70,6 +70,25 @@ return [
     'new' => 'Новый',
     'api' => 'API',
     'show_changes' => 'Показать изменения',
+    'by_user' => 'от :user',
+    'updated' => 'Изменение',
+    'created' => 'Новое',
+    'counter' => 'Счетчик',
+    'note' => 'Заметка',
+    'load_more' => 'Загрузить еще',
+    'show_less' => 'Показать меньше',
+    'show_all' => 'Показать все',
+    'no_activity_found' => 'Для этого контакта не найдено активности.',
+    'contact_created' => 'Контакт создан',
+    'contact_updated' => 'Контакт обновлен',
+    'counter_incremented' => ':meta +1',
+    'note_added' => 'Заметка добавлена: :title',
+    'contact_deleted' => 'Контакт удален',
+    'contact_restored' => 'Контакт восстановлен',
+    'api_action' => 'API: :action',
+    
+    // Notes
+    'no_notes_found' => 'Для этого контакта не найдено заметок.',
     
     // Tags
     'tags' => 'Теги',

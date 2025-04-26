@@ -70,6 +70,25 @@ return [
     'new' => 'Yeni',
     'api' => 'API',
     'show_changes' => 'Değişiklikleri Göster',
+    'by_user' => ':user tarafından',
+    'updated' => 'Güncelleme',
+    'created' => 'Yeni',
+    'counter' => 'Sayaç',
+    'note' => 'Not',
+    'load_more' => 'Daha fazla yükle',
+    'show_less' => 'Daha az göster',
+    'show_all' => 'Hepsini göster',
+    'no_activity_found' => 'Bu kişi için etkinlik bulunamadı.',
+    'contact_created' => 'Kişi oluşturuldu',
+    'contact_updated' => 'Kişi güncellendi',
+    'counter_incremented' => ':meta +1',
+    'note_added' => 'Not eklendi: :title',
+    'contact_deleted' => 'Kişi silindi',
+    'contact_restored' => 'Kişi geri yüklendi',
+    'api_action' => 'API: :action',
+    
+    // Notes
+    'no_notes_found' => 'Bu kişi için not bulunamadı.',
     
     // Tags
     'tags' => 'Etiketler',
