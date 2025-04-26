@@ -56,4 +56,14 @@ class Team extends JetstreamTeam
     {
         return $this->hasMany(Contact::class);
     }
+
+    /**
+     * Get the staff members for the team.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function staffMembers()
+    {
+        return $this->hasMany(\App\Models\StaffMember::class);
+    }
 }

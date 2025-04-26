@@ -113,6 +113,8 @@
         </div>
     @endif
 
+    @livewire('team.staff-members', ['team' => $team], key('team-staff-members-'.$team->id))
+
     @if ($team->users->isNotEmpty())
         <x-section-border />
 
