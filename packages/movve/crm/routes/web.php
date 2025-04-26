@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Movve\Crm\Http\Controllers\ContactViewController;
 use Movve\Crm\Http\Controllers\TeamMetaFieldController;
 use Movve\Crm\Http\Controllers\TestController;
+use Movve\Crm\Http\Controllers\TimetableController;
 
 Route::group([
     'prefix' => '{locale}/crm',
@@ -180,6 +181,8 @@ Route::group([
         }
     });
     
+    // Timetable route
+    Route::get('/timetable', [TimetableController::class, 'index'])->name('crm.timetable.index');
 
 });
 

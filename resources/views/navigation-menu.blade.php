@@ -18,6 +18,9 @@
                     <x-nav-link href="/{{ app()->getLocale() }}/crm/contacts" :active="request()->routeIs('crm.contacts.*')">
                         {{ __('Contacts') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('crm.timetable.index', app()->getLocale()) }}" :active="request()->routeIs('crm.timetable.*')">
+                        {{ __('Timetable') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -148,6 +151,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link href="/{{ app()->getLocale() }}/crm/contacts" :active="request()->routeIs('crm.contacts.*')">
                 {{ __('Contacts') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('crm.timetable.index', app()->getLocale()) }}" :active="request()->routeIs('crm.timetable.*')">
+                {{ __('Timetable') }}
             </x-responsive-nav-link>
         </div>
 
