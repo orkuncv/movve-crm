@@ -21,6 +21,9 @@
                     <x-nav-link href="{{ route('crm.timetable.index', app()->getLocale()) }}" :active="request()->routeIs('crm.timetable.*')">
                         {{ __('Timetable') }}
                     </x-nav-link>
+                    <x-nav-link href="/{{ app()->getLocale() }}/crm/services" :active="request()->is(app()->getLocale().'/crm/services*')">
+                        {{ __('Services') }}
+                    </x-nav-link>
                 </div>
             </div>
 

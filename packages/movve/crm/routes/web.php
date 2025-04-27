@@ -6,6 +6,7 @@ use Movve\Crm\Http\Controllers\ContactViewController;
 use Movve\Crm\Http\Controllers\TeamMetaFieldController;
 use Movve\Crm\Http\Controllers\TestController;
 use Movve\Crm\Http\Controllers\TimetableController;
+use Movve\Crm\Http\Controllers\ServiceController;
 
 Route::group([
     'prefix' => '{locale}/crm',
@@ -180,6 +181,18 @@ Route::group([
             ], 500);
         }
     });
+    
+    // Service routes
+    Route::get('/services', [ServiceController::class, 'index'])->name('crm.services.index');
+    Route::get('/services/create', [ServiceController::class, 'create'])->name('crm.services.create');
+    Route::post('/services', [ServiceController::class, 'store'])->name('crm.services.store');
+    Route::get('/services/{id}', [ServiceController::class, 'show'])->name('crm.services.show')->where('id', '[0-9]+');
+    Route::get('/services/{id}/edit', [ServiceController::class, 'edit'])->name('crm.services.edit')->where('id', '[0-9]+');
+    Route::match(['put', 'post'], '/services/{id}', [ServiceController::class, 'update'])->name('crm.services.update')->where('id', '[0-9]+');
+    Route::delete('/services/{id}', [ServiceController::class, 'destroy'])->name('crm.services.destroy')->where('id', '[0-9]+');
+    
+    // TEMP TEST: ServiceController connectivity
+    Route::get('/services/ping', [ServiceController::class, 'ping']);
     
     // Timetable route
     Route::get('/timetable', [TimetableController::class, 'index'])->name('crm.timetable.index');

@@ -8,6 +8,8 @@ use Laravel\Jetstream\Events\TeamDeleted;
 use Laravel\Jetstream\Events\TeamUpdated;
 use Laravel\Jetstream\Team as JetstreamTeam;
 use Movve\Crm\Models\Contact;
+use Movve\Crm\Models\StaffMember;
+use Movve\Crm\Models\ServiceCategory;
 
 class Team extends JetstreamTeam
 {
@@ -64,6 +66,26 @@ class Team extends JetstreamTeam
      */
     public function staffMembers()
     {
-        return $this->hasMany(\App\Models\StaffMember::class);
+        return $this->hasMany(StaffMember::class);
+    }
+
+    /**
+     * Get the service categories for the team.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function serviceCategories()
+    {
+        return $this->hasMany(ServiceCategory::class);
+    }
+
+    /**
+     * Get the services for the team.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function services()
+    {
+        return $this->hasMany(\App\Models\Service::class);
     }
 }

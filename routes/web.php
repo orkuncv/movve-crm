@@ -64,6 +64,16 @@ Route::prefix('{locale}')
             Route::get('dashboard', function () {
                 return view('dashboard');
             })->name('dashboard');
+
+            // Services overzicht (placeholder view)
+            Route::get('crm/services', [\Movve\Crm\Http\Controllers\ServiceController::class, 'index'])->name('services.index');
+            Route::get('crm/services/create', [\Movve\Crm\Http\Controllers\ServiceController::class, 'create'])->name('services.create');
+            Route::post('crm/services', [\Movve\Crm\Http\Controllers\ServiceController::class, 'store'])->name('services.store');
+            Route::get('crm/services/{service}/edit', [\Movve\Crm\Http\Controllers\ServiceController::class, 'edit'])->name('services.edit');
+            Route::put('crm/services/{service}', [\Movve\Crm\Http\Controllers\ServiceController::class, 'update'])->name('services.update');
+            Route::delete('crm/services/{service}', [\Movve\Crm\Http\Controllers\ServiceController::class, 'destroy'])
+                ->name('services.destroy')
+                ->where('service', '[0-9]+');
         });
     });
 
