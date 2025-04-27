@@ -2,14 +2,14 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-bold text-2xl gradient-text">
-                {{ __('Service bewerken') }}
+                {{ __('crm::crm.edit_service') }}
             </h2>
             <div class="flex space-x-3">
                 <a href="/{{ app()->getLocale() }}/crm/services" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg font-semibold text-sm text-gray-700 tracking-wider hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md">
                     <svg class="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
                     </svg>
-                    {{ __('Terug naar services') }}
+                    {{ __('crm::crm.back_to_services') }}
                 </a>
             </div>
         </div>
@@ -33,7 +33,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <!-- Service Name -->
                             <div>
-                                <x-label for="name" value="{{ __('Naam van service') }}" class="text-gray-700 font-medium" />
+                                <x-label for="name" value="{{ __('crm::crm.service_name') }}" class="text-gray-700 font-medium" />
                                 <div class="mt-1 relative rounded-md shadow-sm">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -46,7 +46,7 @@
                             </div>
                             <!-- Info -->
                             <div>
-                                <x-label for="info" value="{{ __('Extra informatie') }}" class="text-gray-700 font-medium" />
+                                <x-label for="info" value="{{ __('crm::crm.extra_info') }}" class="text-gray-700 font-medium" />
                                 <div class="mt-1 relative rounded-md shadow-sm">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,7 +59,7 @@
                             </div>
                             <!-- Price -->
                             <div>
-                                <x-label for="price" value="{{ __('Prijs') }}" class="text-gray-700 font-medium" />
+                                <x-label for="price" value="{{ __('crm::crm.price') }}" class="text-gray-700 font-medium" />
                                 <div class="mt-1 relative rounded-md shadow-sm">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -72,7 +72,7 @@
                             </div>
                             <!-- Duration -->
                             <div>
-                                <x-label for="duration" value="{{ __('Duur (minuten)') }}" class="text-gray-700 font-medium" />
+                                <x-label for="duration" value="{{ __('crm::crm.duration') }}" class="text-gray-700 font-medium" />
                                 <div class="mt-1 relative rounded-md shadow-sm">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -85,9 +85,9 @@
                             </div>
                             <!-- Category -->
                             <div>
-                                <x-label for="category_id" value="{{ __('Categorie') }}" class="text-gray-700 font-medium" />
+                                <x-label for="category_id" value="{{ __('crm::crm.category') }}" class="text-gray-700 font-medium" />
                                 <select id="category_id" name="category_id" class="block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                                    <option value="">{{ __('Geen categorie') }}</option>
+                                    <option value="">{{ __('crm::crm.no_category') }}</option>
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}" @if(old('category_id', $service->category_id) == $category->id) selected @endif>{{ $category->name }}</option>
                                     @endforeach
@@ -96,7 +96,7 @@
                             </div>
                             <!-- Staffmembers -->
                             <div>
-                                <x-label for="staff_member_ids" value="{{ __('Koppel medewerkers (optioneel)') }}" class="text-gray-700 font-medium" />
+                                <x-label for="staff_member_ids" value="{{ __('crm::crm.staff_members') }}" class="text-gray-700 font-medium" />
                                 <select id="staff_member_ids" name="staff_member_ids[]" multiple class="block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                     @foreach($staffMembers as $staff)
                                         <option value="{{ $staff->id }}" @if(in_array($staff->id, old('staff_member_ids', $selectedStaff))) selected @endif>{{ $staff->name }}</option>
@@ -110,13 +110,13 @@
                                 <svg class="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
                                 </svg>
-                                {{ __('Annuleren') }}
+                                {{ __('crm::crm.cancel') }}
                             </a>
                             <button type="submit" class="inline-flex items-center px-6 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 border border-transparent rounded-lg font-semibold text-sm text-white tracking-wider hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 shadow-md hover:shadow-lg">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                                 </svg>
-                                {{ __('Service opslaan') }}
+                                {{ __('crm::crm.save_service') }}
                             </button>
                         </div>
                     </form>

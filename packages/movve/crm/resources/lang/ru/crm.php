@@ -139,4 +139,23 @@ return [
     'operation_failed' => 'Операция не удалась.',
     'please_wait' => 'Пожалуйста, подождите...',
     'loading' => 'Загрузка...',
+    
+    // Services
+    'services' => 'Услуги',
+    'add_service' => 'Добавить услугу',
+    'services_overview' => 'Обзор услуг',
+    'no_services' => 'Услуги еще не добавлены.',
+    'service_details' => 'Детали услуги',
+    'edit_service' => 'Редактировать услугу',
+    'back_to_services' => 'Назад к услугам',
+    'service_name' => 'Название услуги',
+    'extra_info' => 'Дополнительная информация',
+    'add_service_title' => 'Добавить услугу',
+    'category' => 'Категория:',
+    'price' => 'Цена:',
+    'duration' => 'Длительность:',
+    'staff_members' => 'Сотрудники:',
+    'no_category' => 'Нет категории',
+    'save_service' => 'Сохранить услугу',
+    'confirm_delete_service' => 'Вы уверены, что хотите удалить эту услугу?',
 ];

@@ -139,4 +139,23 @@ return [
     'operation_failed' => 'Bewerking mislukt.',
     'please_wait' => 'Even geduld...',
     'loading' => 'Laden...',
+    
+    // Services
+    'services' => 'Services',
+    'add_service' => 'Service toevoegen',
+    'services_overview' => 'Services overzicht',
+    'no_services' => 'Nog geen services toegevoegd.',
+    'service_details' => 'Service details',
+    'edit_service' => 'Service bewerken',
+    'back_to_services' => 'Terug naar services',
+    'service_name' => 'Naam van service',
+    'extra_info' => 'Extra informatie',
+    'add_service_title' => 'Service toevoegen',
+    'category' => 'Categorie:',
+    'price' => 'Prijs:',
+    'duration' => 'Duur:',
+    'staff_members' => 'Medewerkers:',
+    'no_category' => 'Geen categorie',
+    'save_service' => 'Service opslaan',
+    'confirm_delete_service' => 'Weet je zeker dat je deze service wilt verwijderen?',
 ];

@@ -137,4 +137,23 @@ return [
     'operation_failed' => 'Operation failed.',
     'please_wait' => 'Please wait...',
     'loading' => 'Loading...',
+    
+    // Services
+    'services' => 'Services',
+    'add_service' => 'Add Service',
+    'services_overview' => 'Services overview',
+    'no_services' => 'No services added yet.',
+    'service_details' => 'Service details',
+    'edit_service' => 'Edit service',
+    'back_to_services' => 'Back to services',
+    'service_name' => 'Service name',
+    'extra_info' => 'Extra information',
+    'add_service_title' => 'Add service',
+    'category' => 'Category:',
+    'price' => 'Price:',
+    'duration' => 'Duration:',
+    'staff_members' => 'Staff members:',
+    'no_category' => 'No category',
+    'save_service' => 'Save service',
+    'confirm_delete_service' => 'Are you sure you want to delete this service?',
 ];

@@ -139,4 +139,23 @@ return [
     'operation_failed' => 'İşlem başarısız oldu.',
     'please_wait' => 'Lütfen bekleyin...',
     'loading' => 'Yükleniyor...',
+    
+    // Services
+    'services' => 'Hizmetler',
+    'add_service' => 'Hizmet Ekle',
+    'services_overview' => 'Hizmetler genel bakış',
+    'no_services' => 'Henüz hizmet eklenmedi.',
+    'service_details' => 'Hizmet detayları',
+    'edit_service' => 'Hizmeti düzenle',
+    'back_to_services' => 'Hizmetlere geri dön',
+    'service_name' => 'Hizmet adı',
+    'extra_info' => 'Ek bilgi',
+    'add_service_title' => 'Hizmet ekle',
+    'category' => 'Kategori:',
+    'price' => 'Fiyat:',
+    'duration' => 'Süre:',
+    'staff_members' => 'Çalışanlar:',
+    'no_category' => 'Kategori yok',
+    'save_service' => 'Hizmeti kaydet',
+    'confirm_delete_service' => 'Bu hizmeti silmek istediğinizden emin misiniz?',
 ];
