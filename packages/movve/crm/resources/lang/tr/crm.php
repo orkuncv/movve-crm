@@ -24,6 +24,7 @@ return [
     'edit_contact' => 'Kişiyi Düzenle',
     'back_to_contacts' => 'Kişilere Geri Dön',
     'contact_information' => 'Kişi Bilgileri',
+    'contact_information_short' => 'Kişi',
     'first_name' => 'Ad',
     'last_name' => 'Soyad',
     'email' => 'E-posta',
@@ -34,6 +35,7 @@ return [
     'visited' => 'Ziyaret Edildi',
     'no_recent_activity' => 'Bu kişi için yakın zamanda aktivite bulunamadı.',
     'activity_log' => 'Aktivite Günlüğü',
+    'activity' => 'Aktivite',
     'notes' => 'Notlar',
     'add_note' => 'Not Ekle',
     'save_note' => 'Notu Kaydet',
@@ -64,6 +66,11 @@ return [
     'text' => 'Metin',
     'date' => 'Tarih',
     'boolean' => 'Mantıksal',
+    'meta_date_of_birth' => 'Doğum Tarihi',
+    'meta_company_taxnumber' => 'Şirket Vergi Numarası',
+    'meta_company_name' => 'Şirket Adı',
+    'meta_company_adress' => 'Şirket Adresi',
+    'meta_company_email' => 'Şirket E-posta',
     
     // Activity Log
     'change' => 'Değişiklik',
@@ -110,6 +117,12 @@ return [
     'tag_updated' => 'Etiket başarıyla güncellendi.',
     'tag_deleted' => 'Etiket başarıyla silindi.',
     'confirm_delete_tag' => 'Bu etiketi silmek istediğinizden emin misiniz?',
+    
+    // Files
+    'files' => 'Dosyalar',
+    'no_files_uploaded' => 'Bu kişi için dosya yüklenmedi.',
+    'size_kb' => ':size KB',
+    'uploaded_at' => ':datetime tarihinde yüklendi',
     
     // Filters
     'filters' => 'Filtreler',
@@ -158,4 +171,7 @@ return [
     'no_category' => 'Kategori yok',
     'save_service' => 'Hizmeti kaydet',
     'confirm_delete_service' => 'Bu hizmeti silmek istediğinizden emin misiniz?',
+    
+    // WhatsApp
+    'chat_on_whatsapp' => 'WhatsApp ile sohbet et',
 ];

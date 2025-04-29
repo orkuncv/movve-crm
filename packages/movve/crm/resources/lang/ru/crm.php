@@ -24,6 +24,7 @@ return [
     'edit_contact' => 'Редактировать контакт',
     'back_to_contacts' => 'Назад к контактам',
     'contact_information' => 'Информация о контакте',
+    'contact_information_short' => 'Контакт',
     'first_name' => 'Имя',
     'last_name' => 'Фамилия',
     'email' => 'Электронная почта',
@@ -34,6 +35,7 @@ return [
     'visited' => 'Посещено',
     'no_recent_activity' => 'Нет недавней активности для этого контакта.',
     'activity_log' => 'Журнал активности',
+    'activity' => 'Активность',
     'notes' => 'Заметки',
     'add_note' => 'Добавить заметку',
     'save_note' => 'Сохранить заметку',
@@ -48,6 +50,11 @@ return [
     'title' => 'Заголовок',
     'content' => 'Содержание',
     'title_placeholder' => 'Необязательный заголовок (дата будет добавлена автоматически)',
+    'files' => 'Файлы',
+    'no_files_uploaded' => 'Для этого контакта не загружено файлов.',
+    'size_kb' => ':size КБ',
+    'uploaded_at' => 'Загружено :datetime',
+    'chat_on_whatsapp' => 'Чат в WhatsApp',
     
     // Team Meta Fields
     'meta_fields' => 'Метаполя',
@@ -64,6 +71,11 @@ return [
     'text' => 'Текст',
     'date' => 'Дата',
     'boolean' => 'Логический',
+    'meta_date_of_birth' => 'Дата рождения',
+    'meta_company_taxnumber' => 'Налоговый номер компании',
+    'meta_company_name' => 'Название компании',
+    'meta_company_adress' => 'Адрес компании',
+    'meta_company_email' => 'Электронная почта компании',
     
     // Activity Log
     'change' => 'Изменение',

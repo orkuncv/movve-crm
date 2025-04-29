@@ -21,6 +21,7 @@ return [
     'contacts' => 'Contacten',
     'contact' => 'Contact',
     'contact_details' => 'Contactgegevens',
+    'contact_information_short' => 'Contact',
     'edit_contact' => 'Contact bewerken',
     'back_to_contacts' => 'Terug naar contacten',
     'contact_information' => 'Contactinformatie',
@@ -64,6 +65,11 @@ return [
     'text' => 'Tekst',
     'date' => 'Datum',
     'boolean' => 'Boolean',
+    'meta_date_of_birth' => 'Geboortedatum',
+    'meta_company_taxnumber' => 'BTW-nummer bedrijf',
+    'meta_company_name' => 'Bedrijfsnaam',
+    'meta_company_adress' => 'Bedrijfsadres',
+    'meta_company_email' => 'Bedrijf e-mail',
     
     // Activity Log
     'change' => 'Wijziging',
@@ -86,6 +92,7 @@ return [
     'contact_deleted' => 'Contact verwijderd',
     'contact_restored' => 'Contact hersteld',
     'api_action' => 'API: :action',
+    'activity' => 'Activiteit',
     
     // Notes
     'no_notes_found' => 'Geen notities gevonden voor dit contact.',
@@ -110,6 +117,12 @@ return [
     'tag_updated' => 'Tag succesvol bijgewerkt.',
     'tag_deleted' => 'Tag succesvol verwijderd.',
     'confirm_delete_tag' => 'Weet je zeker dat je deze tag wilt verwijderen?',
+    
+    // Files
+    'files' => 'Bestanden',
+    'no_files_uploaded' => 'Geen bestanden geüpload voor dit contact.',
+    'size_kb' => ':size KB',
+    'uploaded_at' => 'Geüpload op :datetime',
     
     // Filters
     'filters' => 'Filters',
@@ -139,6 +152,7 @@ return [
     'operation_failed' => 'Bewerking mislukt.',
     'please_wait' => 'Even geduld...',
     'loading' => 'Laden...',
+    'chat_on_whatsapp' => 'Chat op WhatsApp',
     
     // Services
     'services' => 'Services',

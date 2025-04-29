@@ -17,7 +17,7 @@
 
         <!-- Styles -->
         @livewireStyles
-        
+
         <style>
             .gradient-text {
                 background: linear-gradient(to right, #4f46e5, #8b5cf6);
@@ -57,20 +57,20 @@
         @stack('modals')
 
         @livewireScripts
-        
+
         @stack('scripts')
-        
+
         <script>
             function incrementCounter(contactId, metaKey, csrfToken) {
                 console.log('Incrementing counter for contact ' + contactId + ' and meta key ' + metaKey);
-                
+
                 // Toon direct feedback aan de gebruiker
                 const counterElement = document.getElementById('counter-' + metaKey);
                 if (counterElement) {
                     const currentValue = parseInt(counterElement.innerText.trim()) || 0;
                     counterElement.innerText = currentValue + 1;
                 }
-                
+
                 // Stuur een AJAX verzoek om de teller te verhogen in de database
                 fetch('/' + '{{ app()->getLocale() }}' + '/crm/test/increment-meta/' + contactId + '/' + metaKey, {
                     method: 'GET',
@@ -101,13 +101,13 @@
                     }
                 });
             }
-            
+
             function saveNotes(contactId, csrfToken) {
                 console.log('Saving notes for contact ' + contactId);
-                
+
                 // Haal de notities op uit de CKEditor
                 let notes = '';
-                
+
                 // Als er een CKEditor instantie is, gebruik die
                 if (window.editor) {
                     notes = window.editor.getData();
@@ -118,14 +118,14 @@
                         notes = textarea.value;
                     }
                 }
-                
+
                 // Toon een laad-indicator of feedback aan de gebruiker
                 const saveButton = document.getElementById('save-notes-button');
                 if (saveButton) {
                     saveButton.disabled = true;
                     saveButton.innerText = 'Opslaan...';
                 }
-                
+
                 // Stuur een AJAX verzoek om de notities op te slaan in de database
                 fetch('/' + '{{ app()->getLocale() }}' + '/crm/test/save-notes/' + contactId + '?notes=' + encodeURIComponent(notes), {
                     method: 'GET',
@@ -142,7 +142,7 @@
                 })
                 .then(data => {
                     console.log('Notes saved successfully:', data);
-                    
+
                     // Toon een succesmelding aan de gebruiker
                     const container = document.getElementById('notes-container');
                     if (container) {
@@ -150,13 +150,13 @@
                         successMessage.className = 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4';
                         successMessage.innerHTML = '<span class="block sm:inline">Notities opgeslagen.</span>';
                         container.insertBefore(successMessage, container.firstChild);
-                        
+
                         // Verwijder de succesmelding na 3 seconden
                         setTimeout(() => {
                             successMessage.remove();
                         }, 3000);
                     }
-                    
+
                     // Ververs de pagina om de nieuwe notities te tonen
                     setTimeout(() => {
                         window.location.reload();
@@ -164,7 +164,7 @@
                 })
                 .catch(error => {
                     console.error('Error saving notes:', error);
-                    
+
                     // Toon een foutmelding aan de gebruiker
                     const container = document.getElementById('notes-container');
                     if (container) {

@@ -21,6 +21,7 @@ return [
     'contacts' => 'Contacts',
     'contact' => 'Contact',
     'contact_details' => 'Contact Details',
+    'contact_information_short' => 'Contact',
     'edit_contact' => 'Edit Contact',
     'back_to_contacts' => 'Back to Contacts',
     'contact_information' => 'Contact Information',
@@ -34,6 +35,7 @@ return [
     'visited' => 'Visited',
     'no_recent_activity' => 'No recent activity found for this contact.',
     'activity_log' => 'Activity Log',
+    'activity' => 'Activity',
     'notes' => 'Notes',
     'add_note' => 'Add Note',
     'save_note' => 'Save Note',
@@ -48,6 +50,11 @@ return [
     'title' => 'Title',
     'content' => 'Content',
     'title_placeholder' => 'Optional title (date will be added automatically)',
+    'files' => 'Files',
+    'no_files_uploaded' => 'No files uploaded for this contact.',
+    'size_kb' => ':size KB',
+    'uploaded_at' => 'Uploaded at :datetime',
+    'chat_on_whatsapp' => 'Chat on WhatsApp',
     
     // Team Meta Fields
     'meta_fields' => 'Meta Fields',
@@ -64,6 +71,11 @@ return [
     'text' => 'Text',
     'date' => 'Date',
     'boolean' => 'Boolean',
+    'meta_date_of_birth' => 'Date of Birth',
+    'meta_company_taxnumber' => 'Company Tax Number',
+    'meta_company_name' => 'Company Name',
+    'meta_company_adress' => 'Company Address',
+    'meta_company_email' => 'Company Email',
     
     // Activity Log
     'change' => 'Change',
