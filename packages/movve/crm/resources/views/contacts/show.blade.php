@@ -224,7 +224,6 @@
 
                             <!-- Notes -->
                             <div id="notes" x-show="section === 'notes'" x-cloak>
-                                <h4 class="text-lg font-medium text-gray-900 mb-4">{{ __('crm::crm.notes') }}</h4>
                                 @livewire('movve.crm.contact-notes-editor', ['contact' => $contact], key('notes-'.$contact->id))
                             </div>
 

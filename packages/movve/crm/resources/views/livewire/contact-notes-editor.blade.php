@@ -65,56 +65,36 @@
         </form>
     </div>
 
-    <div x-data="{ open: false }" class="mb-6">
-        <button type="button"
-            @click="open = !open"
-            class="w-full flex justify-between items-center px-4 py-2 bg-indigo-50 border border-indigo-200 rounded-md text-indigo-700 font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 transition mb-2">
-            <span>
-                <svg :class="{'rotate-90': open}" class="inline h-4 w-4 mr-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-                Notities
-            </span>
-            <span x-text="open ? 'Sluiten' : 'Toon notities'"></span>
-        </button>
-        <div x-show="open" x-transition class="mt-2">
-            <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('crm::crm.notes') }}</h3>
-
-            <!-- Lijst van bestaande notities -->
-            <div class="space-y-4">
-                @if(count($notes) > 0)
-                    @foreach($notes as $note)
-                        <div class="border border-gray-200 rounded-md p-4 bg-white hover:bg-gray-50">
-                            <div class="flex justify-between items-start mb-2">
-                                <h5 class="text-sm font-semibold text-gray-800">{{ $note->title }}</h5>
-                                <span class="text-xs text-gray-500">{{ $note->created_at->format('d-m-Y H:i') }}</span>
+    <!-- Notities lijst zonder accordion -->
+    <div class="mt-6">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('crm::crm.notes') }}</h3>
+        @if($notes->count())
+            <ul class="divide-y divide-gray-100">
+                @foreach($notes as $note)
+                    <li class="py-4">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <div class="font-semibold text-indigo-700">{{ $note->title }}</div>
+                                <div class="text-gray-700">{{ $note->content }}</div>
+                                <div class="text-xs text-gray-400 mt-1">{{ $note->created_at->format('d-m-Y H:i') }}</div>
                             </div>
-                            <div class="text-sm text-gray-700">
-                                {!! $note->content !!}
+                            <div class="flex items-center space-x-2">
+                                <button wire:click="editNote({{ $note->id }})" class="text-indigo-500 hover:text-indigo-700 text-xs">{{ __('crm::crm.edit') }}</button>
+                                <button wire:click="deleteNote({{ $note->id }})" class="text-red-500 hover:text-red-700 text-xs">{{ __('crm::crm.delete') }}</button>
                             </div>
-                            @if($note->files && $note->files->count())
-                                <div class="mt-3">
-                                    <div class="text-xs text-gray-500 mb-1">Bijlagen:</div>
-                                    <ul class="list-disc ml-5">
-                                        @foreach($note->files as $file)
-                                            <li>
-                                                <a href="{{ asset('storage/' . $file->file_path) }}" target="_blank" class="text-indigo-600 hover:underline">
-                                                    {{ $file->original_name }}
-                                                </a>
-                                                <span class="text-gray-400 text-xs">({{ number_format($file->size/1024, 1) }} KB)</span>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
                         </div>
-                    @endforeach
-                @else
-                    <div class="text-gray-500 text-sm italic">
-                        {{ __('crm::crm.no_notes_found') }}
-                    </div>
-                @endif
-            </div>
-        </div>
+                        @if($note->files && $note->files->count())
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                @foreach($note->files as $file)
+                                    <a href="{{ asset('storage/' . $file->file_path) }}" target="_blank" class="text-indigo-400 hover:underline text-xs">{{ $file->original_name }}</a>
+                                @endforeach
+                            </div>
+                        @endif
+                    </li>
+                @endforeach
+            </ul>
+        @else
+            <div class="text-gray-500 italic">{{ __('crm::crm.no_notes_yet') }}</div>
+        @endif
     </div>
 </div>
