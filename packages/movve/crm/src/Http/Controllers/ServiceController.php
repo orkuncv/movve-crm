@@ -56,11 +56,12 @@ class ServiceController extends Controller
         if (isset($validated['staff_member_ids'])) {
             $service->staffMembers()->sync($validated['staff_member_ids']);
         }
-        return redirect()->route('services.index')->with('success', __('Service succesvol toegevoegd.'));
+        return redirect()->route('crm.services.index')->with('success', __('Service succesvol toegevoegd.'));
     }
 
     public function edit($id)
     {
+        $id = request()->segment(4);
         $team = Auth::user()->currentTeam;
         $service = Service::where('team_id', $team->id)->findOrFail($id);
         $categories = ServiceCategory::where('team_id', $team->id)->get();
@@ -71,6 +72,7 @@ class ServiceController extends Controller
 
     public function update(Request $request, $id)
     {
+        $id = request()->segment(4);
         $team = Auth::user()->currentTeam;
         $service = Service::where('team_id', $team->id)->findOrFail($id);
         $validated = $request->validate([
@@ -94,23 +96,44 @@ class ServiceController extends Controller
         } else {
             $service->staffMembers()->detach();
         }
-        return redirect()->route('services.index')->with('success', __('Service succesvol bijgewerkt.'));
+        return redirect()->route('crm.services.index')->with('success', __('Service succesvol bijgewerkt.'));
     }
 
     public function show($id)
     {
+        dump($id);
         $team = Auth::user()->currentTeam;
-        $service = Service::where('team_id', $team->id)->findOrFail($id);
-        return view('crm::services.show', compact('service'));
+        if (!$team) {
+            abort(500, 'Geen currentTeam gevonden voor de ingelogde gebruiker.');
+        }
+        // DEBUG: Haal het id direct uit de URL als tijdelijke workaround
+        $id = request()->segment(4);
+        $serviceCheck = \Movve\Crm\Models\Service::find($id);
+        if (!$serviceCheck) {
+            abort(500, 'Service met ID ' . $id . ' bestaat niet in de database.');
+        }
+        \Log::info('Gevonden service:', $serviceCheck ? $serviceCheck->toArray() : []);
+        \Log::info('Current team:', $team ? $team->toArray() : []);
+        try {
+            $service = Service::where('team_id', $team->id)->findOrFail($id);
+        } catch (\Exception $e) {
+            abort(500, 'Service niet gevonden of DB error: ' . $e->getMessage());
+        }
+        try {
+            return view('crm::services.show', compact('service'));
+        } catch (\Throwable $e) {
+            abort(500, 'View error: ' . $e->getMessage());
+        }
     }
 
     public function destroy($id)
     {
+        $id = request()->segment(4);
         $team = Auth::user()->currentTeam;
         $service = Service::where('team_id', $team->id)->findOrFail($id);
         $service->staffMembers()->detach();
         $service->delete();
-        return redirect()->route('services.index')->with('success', __('Service verwijderd.'));
+        return redirect()->route('crm.services.index')->with('success', __('Service verwijderd.'));
     }
 
     // Temporary test method to verify controller registration

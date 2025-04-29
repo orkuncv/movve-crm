@@ -32,16 +32,16 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    
+
                     @if (session('error'))
                         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4">
                             {{ session('error') }}
                         </div>
                     @endif
-                    
 
-                    
-                    <form method="POST" action="/{{ app()->getLocale() }}/crm/test/update-contact/{{ $contact->id }}" class="space-y-6">
+
+
+                    <form method="POST" action="{{ route('crm.contacts.update', ['locale' => app()->getLocale(), 'id' => $contact->id]) }}" class="space-y-6">
                         @csrf
                         <!-- Geen @method('PUT') meer, we gebruiken direct POST -->
 
@@ -55,7 +55,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                         </svg>
                                     </div>
-                                    <x-input id="first_name" name="first_name" type="text" class="pl-10 block w-full border-gray-300 rounded-lg" 
+                                    <x-input id="first_name" name="first_name" type="text" class="pl-10 block w-full border-gray-300 rounded-lg"
                                         value="{{ old('first_name', $contact->first_name) }}" required autofocus />
                                 </div>
                                 <x-input-error for="first_name" class="mt-2" />
@@ -122,6 +122,33 @@
                             </div>
                         </div>
 
+                        <!-- Bedrijfsgegevens (Company Meta Fields) -->
+                        <div class="col-span-1 md:col-span-2">
+                            <h3 class="text-lg font-semibold mt-8 mb-2">{{ __('Company Information') }}</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Company Name -->
+                                <div>
+                                    <x-label for="company_name" value="Company Name" />
+                                    <x-input id="company_name" name="company_name" type="text" class="block w-full border-gray-300 rounded-lg" value="{{ old('company_name', $meta['company_name'] ?? '') }}" />
+                                </div>
+                                <!-- Company Tax Number -->
+                                <div>
+                                    <x-label for="company_taxnumber" value="Company Tax Number" />
+                                    <x-input id="company_taxnumber" name="company_taxnumber" type="text" class="block w-full border-gray-300 rounded-lg" value="{{ old('company_taxnumber', $meta['company_taxnumber'] ?? '') }}" />
+                                </div>
+                                <!-- Company Address -->
+                                <div>
+                                    <x-label for="company_adress" value="Company Address" />
+                                    <x-input id="company_adress" name="company_adress" type="text" class="block w-full border-gray-300 rounded-lg" value="{{ old('company_adress', $meta['company_adress'] ?? '') }}" />
+                                </div>
+                                <!-- Company Email -->
+                                <div>
+                                    <x-label for="company_email" value="Company Email" />
+                                    <x-input id="company_email" name="company_email" type="email" class="block w-full border-gray-300 rounded-lg" value="{{ old('company_email', $meta['company_email'] ?? '') }}" />
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="flex items-center justify-end mt-8 pt-4 border-t border-gray-200">
                             <a href="/{{ app()->getLocale() }}/crm/contacts/{{ $contact->id }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg font-semibold text-sm text-gray-700 tracking-wider hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md mr-3">
                                 {{ __('crm::crm.cancel') }}
@@ -134,7 +161,7 @@
                             </button>
                         </div>
                     </form>
-                    
+
 
                 </div>
             </div>

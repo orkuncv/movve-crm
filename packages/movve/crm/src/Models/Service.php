@@ -3,9 +3,7 @@ namespace Movve\Crm\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Movve\Crm\Models\Team;
-use Movve\Crm\Models\ServiceCategory;
-use Movve\Crm\Models\StaffMember;
+use App\Models\Team;
 
 class Service extends Model
 {
