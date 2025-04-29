@@ -33,27 +33,37 @@
             }
         </style>
     </head>
-    <body class="font-sans antialiased">
-        <x-banner />
-
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+    <body class="font-sans antialiased bg-gray-50 h-screen" x-data="{ sidebarOpen: false }">
+        <div class="flex h-screen">
+            <!-- Sidebar (1 versie, Alpine controlled) -->
+            <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'" class="fixed md:static inset-y-0 left-0 z-40 w-64 flex-shrink-0 transition-transform duration-200 ease-in-out bg-white border-r border-gray-200/40 h-full" x-cloak>
+                <x-sidebar />
+            </aside>
+            <!-- Overlay for mobile sidebar -->
+            <div x-show="sidebarOpen" class="fixed inset-0 bg-black bg-opacity-30 z-30 md:hidden" @click="sidebarOpen = false" x-cloak></div>
+            <!-- Main Content -->
+            <div class="flex-1 flex flex-col transition-all duration-200">
+                <header class="flex items-center h-20 px-8 border-b border-gray-200 bg-white relative">
+                    <!-- Hamburger left -->
+                    <button @click="sidebarOpen = !sidebarOpen" class="inline-flex items-center justify-center rounded-md p-2 text-gray-500 hover:text-[#251b98] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#251b98] md:hidden">
+                        <svg class="h-7 w-7" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <!-- Centered title -->
+                    <div class="flex-1 flex items-center justify-center">
+                        <h1 class="text-2xl w-full font-semibold text-gray-900">{{ $header ?? '' }}</h1>
+                    </div>
+                    <!-- Right actions -->
+                    <div class="flex items-center gap-2 ml-auto">
+                        @yield('header-action')
                     </div>
                 </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+                <main class="flex-1 p-8 overflow-y-auto">
+                    {{ $slot }}
+                </main>
+            </div>
         </div>
-
         @stack('modals')
 
         @livewireScripts

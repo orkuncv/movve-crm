@@ -4,6 +4,16 @@
             <h2 class="font-bold text-2xl gradient-text">
                 {{ __('crm::crm.edit_contact') }}
             </h2>
+        </div>
+        <div class="flex space-x-3">
+            <a href="/{{ app()->getLocale() }}/crm/contacts/{{ $contact->id }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg font-semibold text-sm text-gray-700 tracking-wider hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md">
+                <svg class="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                {{ __('Cancel') }}
+            </a>
+        </div>
+        <x-slot name="headerButtons">
             <div class="flex space-x-3">
                 <a href="/{{ app()->getLocale() }}/crm/contacts/{{ $contact->id }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg font-semibold text-sm text-gray-700 tracking-wider hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md">
                     <svg class="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -12,7 +22,7 @@
                     {{ __('Cancel') }}
                 </a>
             </div>
-        </div>
+        </x-slot>
     </x-slot>
 
     <div class="py-8">
