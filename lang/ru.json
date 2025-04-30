@@ -45,5 +45,9 @@
     "Email": "Электронная почта",
     "Password": "Пароль",
     "Remember me": "Запомнить меня",
-    "Forgot your password?": "Забыли пароль?"
+    "Forgot your password?": "Забыли пароль?",
+    "Dashboard": "Панель управления",
+    "Contacts": "Контакты",
+    "Timetable": "Расписание",
+    "Services": "Услуги"
 }

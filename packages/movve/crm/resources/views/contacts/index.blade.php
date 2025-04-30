@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-center w-full">
             <h2 class="font-bold text-2xl gradient-text">
                 {{ __('crm::crm.contacts') }}
             </h2>

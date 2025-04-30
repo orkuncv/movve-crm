@@ -1,5 +1,6 @@
-@import 'tailwindcss';
-@import "tailwindcss/utilities";
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+@source "../views";
 
 [x-cloak] {
     display: none;

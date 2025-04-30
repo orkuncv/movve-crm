@@ -7,6 +7,7 @@ use Movve\Crm\Http\Controllers\TeamMetaFieldController;
 use Movve\Crm\Http\Controllers\TestController;
 use Movve\Crm\Http\Controllers\TimetableController;
 use Movve\Crm\Http\Controllers\ServiceController;
+use Movve\Crm\Http\Controllers\DashboardController;
 
 Route::group([
     'prefix' => '{locale}/crm',
@@ -173,6 +174,9 @@ Route::group([
             ], 500);
         }
     });
+
+    // Dashboard route
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('crm.dashboard');
 
     // Service routes
     Route::get('/services', [ServiceController::class, 'index'])->name('crm.services.index');

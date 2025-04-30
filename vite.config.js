@@ -11,6 +11,7 @@ export default defineConfig({
             refresh: true,
         }),
         tailwindcss(),
+        tailwindcss()
     ],
     server: {
         cors: true,

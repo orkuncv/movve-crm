@@ -50,11 +50,11 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
-                    <!-- Centered title -->
-                    <div class="flex-1 flex items-center justify-center">
-                        <h1 class="text-2xl w-full font-semibold text-gray-900">{{ $header ?? '' }}</h1>
+
+                    <div class="flex-1 flex items-center justify-between w-full">
+                        {{ $header ?? '' }}
                     </div>
-                    <!-- Right actions -->
+
                     <div class="flex items-center gap-2 ml-auto">
                         @yield('header-action')
                     </div>

@@ -18,11 +18,9 @@ Route::get('/', function () {
     return redirect(app()->getLocale());
 });
 
-// Redirect dashboard to localized dashboard
-Route::get('/dashboard', function () {
-    $locale = session()->get('locale') ?? config('app.fallback_locale', 'en');
-    return redirect("/$locale/dashboard");
-});
+Route::get('/{locale}/dashboard', function ($locale) {
+    return redirect("/$locale/crm/dashboard");
+})->name('dashboard');
 
 // Language switcher
 Route::get('language/{locale}', [LanguageController::class, 'switchLang'])
