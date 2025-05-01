@@ -8,6 +8,7 @@ use Movve\Crm\Http\Controllers\TestController;
 use Movve\Crm\Http\Controllers\TimetableController;
 use Movve\Crm\Http\Controllers\ServiceController;
 use Movve\Crm\Http\Controllers\DashboardController;
+use Movve\Crm\Http\Controllers\BookingController;
 
 Route::group([
     'prefix' => '{locale}/crm',
@@ -174,6 +175,11 @@ Route::group([
             ], 500);
         }
     });
+
+    // Bookings routes
+    Route::resource('bookings', \Movve\Crm\Http\Controllers\BookingController::class, [
+        'as' => 'crm'
+    ]);
 
     // Dashboard route
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('crm.dashboard');

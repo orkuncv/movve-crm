@@ -1,0 +1,20 @@
+<?php
+return [
+    'bookings' => 'Booking',
+    'date' => 'Date',
+    'staff_member' => 'Staff Member',
+    'choose_staff' => 'Choose a staff member',
+    'service' => 'Service',
+    'choose_service' => 'Choose a service',
+    'start_time' => 'Start Time',
+    'end_time' => 'End Time',
+    'contact' => 'Contact',
+    'choose_contact' => 'Choose a contact',
+    'comment' => 'Comment',
+    'cancel' => 'Cancel',
+    'create' => 'Create Booking',
+    'save' => 'Save Booking',
+    'created' => 'Booking created successfully!',
+    'updated' => 'Booking updated successfully!',
+    'deleted' => 'Booking deleted successfully!',
+];

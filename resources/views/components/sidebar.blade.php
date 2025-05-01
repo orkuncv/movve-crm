@@ -78,6 +78,14 @@
                 </svg>
                 {{ __('Services') }}
             </a>
+            <a href="/{{ app()->getLocale() }}/crm/bookings"
+               class="flex items-center w-full px-4 py-4 rounded text-sm font-medium text-gray-900 hover:bg-gray-100 transition mb-1 {{ request()->routeIs('crm.bookings.*') ? 'bg-gray-100' : '' }}">
+                <svg class="w-5 h-5 mr-2 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" fill="none"/>
+                    <path d="M16 3v4M8 3v4M3 11h18" stroke="currentColor"/>
+                </svg>
+                {{ __('crm::booking.bookings') }}
+            </a>
         </nav>
         <div class="px-4 pb-4 flex flex-col gap-3">
             <div class="flex items-center gap-2 text-xs text-gray-400 mt-2">

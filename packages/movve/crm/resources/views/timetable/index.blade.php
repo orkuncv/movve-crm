@@ -4,12 +4,9 @@
             <h2 class="font-bold text-2xl gradient-text">
                 {{ __('crm::timetable.title') }}
             </h2>
-            <a href="#" class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 border border-transparent rounded-lg font-semibold text-sm text-white tracking-wider hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 shadow-md hover:shadow-lg">
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-                </svg>
-                {{ __('crm::timetable.add_booking') }}
-            </a>
+            <button @click="window.dispatchEvent(new CustomEvent('open-booking-modal'))" class="bg-[#251b98] hover:bg-[#1a126c] text-white px-4 py-2 rounded shadow font-semibold">
+                + {{ __('crm::booking.create') }}
+            </button>
         </div>
     </x-slot>
 
@@ -152,6 +149,8 @@
         </div>
     </div>
 
+    <livewire:movve.crm.booking-modal />
+
     <script>
         window.timetableLocale = {
             weekdaysShort: @json(__('crm::timetable.weekdaysShort')),
@@ -275,5 +274,16 @@
                 nextYear() { this.yearDate = new Date(this.yearDate.getFullYear() + 1, 0, 1); }
             }
         }
+    </script>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.store('bookingModal', {
+                show: false
+            });
+            window.addEventListener('open-booking-modal', () => {
+                Alpine.store('bookingModal').show = true;
+            });
+        });
     </script>
 </x-app-layout>

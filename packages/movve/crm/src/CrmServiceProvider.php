@@ -8,6 +8,7 @@ use Movve\Crm\Http\Livewire\ApiTokenManager;
 use Movve\Crm\Http\Livewire\ContactActivityLog;
 use Movve\Crm\Http\Livewire\ContactMetaCounter;
 use Movve\Crm\Http\Livewire\ContactNotesEditor;
+use Movve\Crm\Http\Livewire\BookingForm;
 use Movve\Crm\Http\Livewire\Teams\ManageTeamMetaFields;
 use Movve\Crm\Http\Middleware\CheckCrmPermission;
 use Movve\Crm\Http\Middleware\CrmLocaleMiddleware;
@@ -60,7 +61,7 @@ class CrmServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/crm'),
         ], 'crm-views');
-        
+
         // Load translations
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'crm');
         $this->publishes([
@@ -74,6 +75,8 @@ class CrmServiceProvider extends ServiceProvider
             Livewire::component('movve.crm.contact-notes-editor', ContactNotesEditor::class);
             Livewire::component('movve.crm.contact-activity-log', ContactActivityLog::class);
             Livewire::component('movve.crm.teams.manage-team-meta-fields', ManageTeamMetaFields::class);
+            Livewire::component('movve.crm.booking-form', BookingForm::class);
+            Livewire::component('movve.crm.booking-modal', BookingForm::class);
         }
     }
 }
